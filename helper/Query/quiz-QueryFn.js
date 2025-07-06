@@ -1,5 +1,5 @@
-const asyncHandler = require("express-async-handler");
-const db = require("../../config/db");
+import asyncHandler from 'express-async-handler';
+import db from '../../config/db.js';
 
 
     const CreateQuiz = asyncHandler(async (moduleId,questionHeader,question,description,questionImg1,questionImg2,questionImg3,type,option1,option2,option3,option4,option5,objAnswer,textLabel1,textLabel2,textLabel3,textAnswer1,textAnswer2,textAnswer3,answerHint,status,effectiveFrom,effectiveTo,createdBy,createdDate) => {
@@ -24,6 +24,6 @@ const db = require("../../config/db");
     );
   });
 
-  module.exports = {
+export {
     CreateQuiz,fetchCreatedQuiz,fetchAllQuiz
     };

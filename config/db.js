@@ -1,5 +1,5 @@
-const mysql = require('mysql2/promise');
-const config = require('../config/Config');
+import mysql from 'mysql2/promise.js';
+import config from '../config/Config.js';
 
 async function query(sql, params) {
   const pool = await mysql.createPool(config.db);
@@ -8,6 +8,4 @@ async function query(sql, params) {
   return results;
 }
 
-module.exports = {
-  query
-}
+export default query;

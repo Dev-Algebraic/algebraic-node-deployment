@@ -1,10 +1,10 @@
-const fs = require("fs");
-const officeToPDF = require('office-to-pdf');
-const path = require('path');
+import fs from 'fs';
+import officeToPdf from 'office-to-pdf';
+import path from 'path';
 
 
 
-module.exports.saveImage = (path, file_name, data) => {
+export function saveImage(path, file_name, data) {
 
   const randomFilename =
     Date.now() + "-" + Math.round(Math.random() * 1000) + file_name;
@@ -19,7 +19,7 @@ module.exports.saveImage = (path, file_name, data) => {
 
 
 
-module.exports.saveDocument = (path, file_name, data) => {
+export function saveDocument(path, file_name, data) {
 
   return new Promise(function(resolve, reject) {
     fs.writeFile(path + file_name, data, function(err) {
@@ -29,7 +29,7 @@ module.exports.saveDocument = (path, file_name, data) => {
 });
 };
 
-module.exports.saveToPdf = (wordFileName,pdfFilename) =>{
+export function saveToPdf(wordFileName, pdfFilename) {
 
   const wordDirPath='./documents/word-document/'
   const pdfDirPath= './documents/pdf-document/'

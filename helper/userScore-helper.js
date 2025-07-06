@@ -1,15 +1,16 @@
-const express = require("express");
+import express from 'express';
+import bodyParser from 'body-parser';
 const app = express();
-let bodyParser = require("body-parser");
 app.use(bodyParser.json());
-const asyncHandler = require("express-async-handler");
-const {
+import asyncHandler from 'express-async-handler';
+
+import {
   CreateQuizScore,
   updateQuizCount,
   getQuizResultById,
   fetchQuizScore,
-  verifyQuizResult,
-} = require("./Query/user-ScoreQuery");
+  verifyQuizResult
+} from './Query/user-ScoreQuery.js';
 
 const createQuizScore = asyncHandler(async (req, res) => {
   const { userId, moduleId, score, totalQuestion } = req.body;
@@ -83,7 +84,7 @@ const getScoreData = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = {
+export {
   createQuizScore,
   getScoreData,
 };

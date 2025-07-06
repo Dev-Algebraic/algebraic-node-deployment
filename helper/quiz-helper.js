@@ -1,14 +1,17 @@
-const fs = require('fs');
-const express = require("express");
-const app = express();
-const formidable = require('formidable')
-const bodyParser = require("body-parser");
-var Blob = require('blob');
-app.use(bodyParser.json());
-const asyncHandler = require("express-async-handler");
-const util = require('../utils/util')
+import express from 'express';
+import bodyParser from 'body-parser';
+import asyncHandler from 'express-async-handler';
+import fs from 'fs';
 
-const { CreateQuiz, fetchCreatedQuiz, fetchAllQuiz } = require("./Query/quiz-QueryFn");
+const app = express();
+
+import formidable from 'formidable';
+import Blob from 'blob';
+
+app.use(bodyParser.json());
+import * as util from '../utils/util.js';
+
+import { CreateQuiz, fetchCreatedQuiz, fetchAllQuiz } from './Query/quiz-QueryFn.js';
 
 
 const createQuiz = asyncHandler(async (req, res) => {
@@ -111,7 +114,7 @@ if (files.question_img3) {
   });
 
   
-module.exports = {
+export {
     createQuiz,
     getQuizByModuleId,
   };

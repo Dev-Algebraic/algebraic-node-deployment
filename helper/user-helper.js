@@ -1,19 +1,18 @@
-const express = require("express");
+import express from 'express';
+import bcrypt from 'bcrypt';
+import bodyParser from 'body-parser';
 const app = express();
-const bcrypt = require("bcrypt");
-let bodyParser = require("body-parser");
 app.use(bodyParser.json());
-const asyncHandler = require("express-async-handler");
-const jwt = require("jsonwebtoken");
-const {
+import asyncHandler from 'express-async-handler';
+import jwt from 'jsonwebtoken';
+import {
   createUser,
   userRegDetails,
   verifyUsername,
   getAlldata,
   updateUserPassword,
-  verifyUserCredential,
-} = require("./Query/QueryFn");
-
+  verifyUserCredential
+} from './Query/QueryFn.js';
 
 //json-webTocken
 
@@ -132,7 +131,7 @@ const doSignUp = asyncHandler(async (req, res) => {
 
 
 
-module.exports = {
+export {
   doLogin,
   doSignUp,
   forgotPassword,getData,

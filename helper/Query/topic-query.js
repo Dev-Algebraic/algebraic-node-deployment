@@ -1,5 +1,5 @@
-const asyncHandler = require("express-async-handler");
-const db = require("../../config/db");
+import asyncHandler from 'express-async-handler';
+import db from '../../config/db.js';
 
 
 
@@ -47,6 +47,6 @@ const fetchCreatedTopic = asyncHandler(async (id) => {
     );
   });
 
-  module.exports = {
+export {
     verifyTopicOrderNo,getTopics,topicCreate,fetchCreatedTopic,getTopicByID,updateTopics
     };

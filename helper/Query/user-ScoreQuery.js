@@ -1,5 +1,5 @@
-const asyncHandler = require("express-async-handler");
-const db = require("../../config/db");
+import asyncHandler from 'express-async-handler';
+import db from '../../config/db.js';
 
 const CreateQuizScore = asyncHandler(async (userId, moduleId, score,quizAttempt,totalQuestion,createdDate) => {
     return await db.query(
@@ -42,6 +42,6 @@ const updateQuizCount = asyncHandler(async (userId,moduleId,score,count,totalQue
 
 
 
-  module.exports = {
+  export {
     CreateQuizScore,getQuizResultById,verifyQuizResult,updateQuizCount,fetchQuizScore
     };

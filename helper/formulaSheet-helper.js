@@ -1,9 +1,9 @@
-const express = require("express");
+import express from 'express';
 const app = express();
-let bodyParser = require("body-parser");
+import bodyParser from 'body-parser';
 app.use(bodyParser.json());
-const asyncHandler = require("express-async-handler");
-const { fetchFormulaSheet, getFormulaSheetData, createFormulaSheetData } = require("./Query/formulaSheet-Query");
+import asyncHandler from 'express-async-handler';
+import { fetchFormulaSheet, getFormulaSheetData, createFormulaSheetData } from './Query/formulaSheet-Query.js';
 
 const createFormulaSheet = asyncHandler(async (req, res) => {
   const { content, createdBy } = req.body;
@@ -42,7 +42,7 @@ const getFormulaSheet = asyncHandler(async (req, res) => {
 });
 
 
-module.exports = {
+export {
 createFormulaSheet,
 getFormulaSheet
 

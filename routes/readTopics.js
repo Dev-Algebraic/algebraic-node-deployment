@@ -1,15 +1,13 @@
-const { response } = require("express");
-var express = require("express");
+import express, { response } from 'express';
+import bodyParser from 'body-parser';
+import { readTopic, getReadTopics } from '../helper/readTopic-helper.js';
+
 const app = express();
-var router = express.Router();
-let bodyParser = require("body-parser");
+const router = express.Router();
+
 app.use(bodyParser.json());
 
-const {
-  readTopic,
-  getReadTopics,
-} = require("../helper/readTopic-helper");
 
 router.post("/create", readTopic);
 router.get("/:id", getReadTopics);
-module.exports = router;
+export default router;

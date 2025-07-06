@@ -1,5 +1,5 @@
-const asyncHandler = require("express-async-handler");
-const db = require("../../config/db");
+import asyncHandler from 'express-async-handler';
+import db from '../../config/db.js';
 
 const createUser = asyncHandler(async (firstName, lastName, email,phoneNo,username,passwordHash,statusInfo,usertype,currentDateTime) => {
     return await db.query(
@@ -76,7 +76,7 @@ const getUpdateUserPassword = asyncHandler(async (username) => {
   
   });
 
-  module.exports = {
+export {
   createUser,userRegDetails,loginDetails,verifyUsername,getAlldata,verifyUserCredential,updateUserPassword,getUpdateUserPassword
   };
   

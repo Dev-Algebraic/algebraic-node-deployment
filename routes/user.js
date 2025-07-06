@@ -1,14 +1,12 @@
-const { response } = require("express");
-var express = require("express");
+import express, { response } from 'express';
 const app = express()
 var router = express.Router();
-let bodyParser = require("body-parser");
+import bodyParser from 'body-parser';
 app.use(bodyParser.json());
-const {doSignUp, doLogin, getData, forgotPassword} = require("../helper/user-helper");
-
+import { doSignUp, doLogin, getData, forgotPassword } from '../helper/user-helper.js';
 
 router.post("/signup", doSignUp) 
 router.post("/login", doLogin) 
 //router.get("/data", getData) 
  router.post("/forgot-password",forgotPassword) 
-module.exports=router;
+export default router;

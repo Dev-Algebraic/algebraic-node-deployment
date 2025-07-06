@@ -1,14 +1,16 @@
-const express = require("express");
+import express from 'express';
+import bodyParser from 'body-parser';
+import asyncHandler from 'express-async-handler';
+
 const app = express();
-let bodyParser = require("body-parser");
 app.use(bodyParser.json());
-const asyncHandler = require("express-async-handler");
-const {
+
+import {
   verifyOrderNo,
   createModule,
   fetchCreatedModule,
   getModules,
-} = require("./Query/modulesQueryFn");
+} from './Query/modulesQueryFn.js';
 
 
 const createModuleData = asyncHandler(async (req, res) => {
@@ -86,7 +88,7 @@ const getAllModules = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = {
+export {
   createModuleData,
   getAllModules,
 };

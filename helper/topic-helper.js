@@ -1,22 +1,20 @@
-const express = require("express");
-const fs = require('fs');
-const path = require('path');
+import express from 'express';
+import path from 'path';
+import bodyParser from 'body-parser';
+import asyncHandler from 'express-async-handler';
+import formidable from 'formidable';
+import * as util from '../utils/util.js';
 const app = express();
-let bodyParser = require("body-parser");
 app.use(bodyParser.json());
-const asyncHandler = require("express-async-handler");
-const formidable = require('formidable')
-const util = require('../utils/util')
-const {
+
+import {
   verifyTopicOrderNo,
   getTopics,
   topicCreate,
   fetchCreatedTopic,
-
-  verifyIsReadTopic,
   getTopicByID,
-  updateTopics,
-} = require("./Query/topic-query");
+  updateTopics
+} from './Query/topic-query.js';
 
 const createTopic = asyncHandler(async (req, res) => {
   //const { moduleId, name, description, content, orderNo, createdBy } = req.body;
@@ -218,7 +216,7 @@ const updateTopic = asyncHandler(async (req, res) => {
 
 });
 
-module.exports = {
+export {
   createTopic,
   getTopicsByModuleId,
   getTopicsById,

@@ -1,9 +1,10 @@
-const { response } = require("express");
-var express = require("express");
-const app = express()
-var router = express.Router();
-let bodyParser = require("body-parser");
-const { createFormulaSheet, getFormulaSheet } = require("../helper/formulaSheet-helper");
+import express, { response } from 'express';
+import bodyParser from 'body-parser';
+import { createFormulaSheet, getFormulaSheet } from '../helper/formulaSheet-helper.js';
+
+const app = express();
+const router = express.Router();
+
 app.use(bodyParser.json());
 
 
@@ -14,4 +15,4 @@ router.get("/get", getFormulaSheet)
 
 
 
-module.exports=router;
+export default router;

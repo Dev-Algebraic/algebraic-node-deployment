@@ -1,5 +1,5 @@
-const asyncHandler = require("express-async-handler");
-const db = require("../../config/db");
+import asyncHandler from 'express-async-handler';
+import db from '../../config/db.js';
 
 const createFormulaSheetData = asyncHandler(
   async (content,createdBy, createdDate) => {
@@ -21,7 +21,7 @@ const getFormulaSheetData = asyncHandler(async () => {
   return await db.query("SELECT content FROM formula_sheet ");
 });
 
-module.exports = {
+export {
     createFormulaSheetData,
   fetchFormulaSheet,
   getFormulaSheetData,

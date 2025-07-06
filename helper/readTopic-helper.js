@@ -1,12 +1,9 @@
-const express = require("express");
+import express from 'express';
+import bodyParser from 'body-parser';
+import asyncHandler from 'express-async-handler';
 const app = express();
-let bodyParser = require("body-parser");
 app.use(bodyParser.json());
-const asyncHandler = require("express-async-handler");
-const { verifyIsReadTopic, createReadTopic, fetchCreatedReadTopic, getAllReadTopics } = require("./Query/readTopicQuery");
-
-
-
+import { verifyIsReadTopic, createReadTopic, fetchCreatedReadTopic, getAllReadTopics } from './Query/readTopicQuery.js';
 
 const readTopic = asyncHandler(async (req, res) => {
     const { topicId, userId} = req.body;
@@ -59,7 +56,7 @@ const readTopic = asyncHandler(async (req, res) => {
   });
 
   
-module.exports = {
+export {
     readTopic,
     getReadTopics,
   };

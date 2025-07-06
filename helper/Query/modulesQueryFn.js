@@ -1,5 +1,5 @@
-const asyncHandler = require("express-async-handler");
-const db = require("../../config/db");
+import asyncHandler from 'express-async-handler';
+import db from '../../config/db.js';
 
 const verifyOrderNo = asyncHandler(async (orderno) => {
   return await db.query(
@@ -56,7 +56,7 @@ const getModules = asyncHandler(async (userId,ParentId) => {
   );
 });
 
-module.exports = {
+export {
   verifyOrderNo,
   createModule,
   fetchCreatedModule,

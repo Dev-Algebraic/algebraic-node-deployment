@@ -1,5 +1,5 @@
-const asyncHandler = require("express-async-handler");
-const db = require("../../config/db");
+import asyncHandler from 'express-async-handler';
+import db from '../../config/db.js';
 
 //readTopicsQuery 
 
@@ -31,6 +31,6 @@ const db = require("../../config/db");
     );
   });
 
-  module.exports = {
+export {
     verifyIsReadTopic,createReadTopic,fetchCreatedReadTopic,getAllReadTopics
     };
