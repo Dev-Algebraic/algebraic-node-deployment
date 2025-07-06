@@ -2,11 +2,11 @@
 
 const config = {
   db: { 
-    host: '127.0.0.1',
-    user:  'root',
-    password: 'root',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     port:  '3306',
-    database: 'algebraic_db',
   },
 
 

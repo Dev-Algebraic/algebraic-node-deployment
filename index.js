@@ -5,9 +5,9 @@ import modules from './routes/modules.js';
 import topics from './routes/topics.js';
 import quiz from './routes/quiz.js';
 import readTopics from './routes/readTopics.js';
-import dotenv from 'dotenv';
 
-dotenv.config({path:'../.env'});
+import dotenv from 'dotenv';
+dotenv.config();
 
 import path from 'path';
 import { fileURLToPath } from 'url';
