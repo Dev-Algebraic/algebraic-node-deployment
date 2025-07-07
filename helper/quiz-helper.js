@@ -6,7 +6,6 @@ import fs from 'fs';
 const app = express();
 
 import formidable from 'formidable';
-import Blob from 'blob';
 
 app.use(bodyParser.json());
 import * as util from '../utils/util.js';
