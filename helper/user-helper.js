@@ -85,9 +85,9 @@ const getData = asyncHandler(async (req, res) => {
 
   const dataResult = await getAlldata();
   if (dataResult.length > 0) {
-    return res.status.json({ data: dataResult });
+    return res.status(200).json({ data: dataResult });
   }else{
-    return res.status.json({ error: "Failed " });  
+    return res.status(400).json({ error: "Failed " });  
   }
 });
 //Registration
