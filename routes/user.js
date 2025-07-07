@@ -7,6 +7,6 @@ import { doSignUp, doLogin, getData, forgotPassword } from '../helper/user-helpe
 
 router.post("/signup", doSignUp) 
 router.post("/login", doLogin) 
-//router.get("/data", getData) 
- router.post("/forgot-password",forgotPassword) 
+router.get("/data", getData) 
+router.post("/forgot-password",forgotPassword) 
 export default router;
