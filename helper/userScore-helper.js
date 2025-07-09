@@ -21,7 +21,7 @@ const createQuizScore = asyncHandler(async (req, res) => {
 
   let verifyUserData = await verifyQuizResult(userId, moduleId);
   if (verifyUserData.length > 0) {
-    userData = verifyUserData[0];
+    const userData = verifyUserData[0];
     const count = userData.quiz_attempt +1;
     const quizUpdated = await updateQuizCount(
       userId,
