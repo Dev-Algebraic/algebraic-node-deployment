@@ -9,7 +9,8 @@ import {
   updateQuizCount,
   getQuizResultById,
   fetchQuizScore,
-  verifyQuizResult
+  verifyQuizResult,
+  getQuizResultByModuleId
 } from './Query/user-ScoreQuery.js';
 
 const createQuizScore = asyncHandler(async (req, res) => {
@@ -84,7 +85,20 @@ const getScoreData = asyncHandler(async (req, res) => {
   }
 });
 
+const getScoreDataByModuleId = asyncHandler(async (req, res) => {
+
+  const moduleId = req.params.id;
+
+  const quizScore = await getQuizResultById(moduleId);
+  if (quizScore.length > 0) {
+    return res.json({ data: quizScore });
+  } else {
+    return res.json({ error: "invalid user" });
+  }
+});
+
 export {
   createQuizScore,
   getScoreData,
+  getScoreDataByModuleId,
 };
