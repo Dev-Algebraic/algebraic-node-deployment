@@ -40,8 +40,13 @@ const updateQuizCount = asyncHandler(async (userId,moduleId,score,count,totalQue
     );
   });
 
-
+  const getQuizResultByModuleId = asyncHandler(async (moduleId) => {
+    return await db.query(
+    `SELECT module_fk,score,quiz_attempt,total_questions FROM user_score WHERE module_fk=?`,
+    [moduleId]
+    );
+  });
 
   export {
-    CreateQuizScore,getQuizResultById,verifyQuizResult,updateQuizCount,fetchQuizScore
+    CreateQuizScore,getQuizResultById,verifyQuizResult,updateQuizCount,fetchQuizScore, getQuizResultByModuleId
     };
