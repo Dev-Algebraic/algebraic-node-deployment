@@ -40,10 +40,10 @@ const updateQuizCount = asyncHandler(async (userId,moduleId,score,count,totalQue
     );
   });
 
-  const getQuizResultByModuleId = asyncHandler(async (moduleId) => {
+  const getQuizResultByModuleId = asyncHandler(async (moduleId, userId) => {
     return await db.query(
-    `SELECT module_fk,score,quiz_attempt,total_questions FROM user_score WHERE module_fk=?`,
-    [moduleId]
+    `SELECT module_fk,score,quiz_attempt,total_questions FROM user_score WHERE module_fk=? AND user_fk=?`,
+    [moduleId, userId]
     );
   });
 

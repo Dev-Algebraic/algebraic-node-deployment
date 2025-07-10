@@ -13,7 +13,6 @@ router.get("/get/:userid", getAllModules)
 
 router.post("/score/create", createQuizScore) 
 router.get("/score/:id", getScoreData)
-router.get("/score/module/:id", getScoreDataByModuleId)
-
+router.get("/score/module/:id/:userId", getScoreDataByModuleId)
 
 export default router;
