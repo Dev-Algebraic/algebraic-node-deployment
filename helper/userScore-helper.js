@@ -10,7 +10,7 @@ import {
   getQuizResultById,
   fetchQuizScore,
   verifyQuizResult,
-  getQuizResultByModuleId
+  getQuizAttemptsByModuleId
 } from './Query/user-ScoreQuery.js';
 
 const createQuizScore = asyncHandler(async (req, res) => {
@@ -85,22 +85,32 @@ const getScoreData = asyncHandler(async (req, res) => {
   }
 });
 
-const getScoreDataByModuleId = asyncHandler(async (req, res) => {
+const getQuizAttempts = asyncHandler(async (req, res) => {
 
   const moduleId = req.params.id;
   const userId = req.params.userId;
 
-  const quizScore = await getQuizResultById(moduleId, userId);
+  const getAllQuizAttempts = await getQuizAttemptsByModuleId(moduleId, userId);
 
-  if (quizScore.length > 0) {
-    return res.json({ data: quizScore });
+  if (getAllQuizAttempts.length > 0) {
+    let attemptList = getAllQuizAttempts;
+
+    attemptList.forEach((e) => {
+      if (e.score > 0 && e.total_questions > 0) {
+        e.score_percentage = (e.score / e.total_questions) * 100;
+      } else {
+        e.score_percentage =null;
+      }
+    });
+
+    return res.json({ data: attemptList });
   } else {
-    return res.json({ error: "invalid user" });
+    return res.json({ error: "no attempts to display" });
   }
 });
 
 export {
   createQuizScore,
   getScoreData,
-  getScoreDataByModuleId,
+  getQuizAttempts,
 };
