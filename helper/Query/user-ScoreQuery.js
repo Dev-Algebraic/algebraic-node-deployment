@@ -8,21 +8,17 @@ const CreateQuizScore = asyncHandler(async (userId, moduleId, score,quizAttempt,
   );
 });
 
-
-
-
-  const verifyQuizResult = asyncHandler(async (userId,moduleId) => {
+const verifyQuizResult = asyncHandler(async (userId, moduleId) => {
     return await db.query(
          `SELECT user_fk,module_fk,score,quiz_attempt,total_questions FROM user_score WHERE user_fk=? AND module_fk=? `,
     [userId,moduleId]
     );
   });
 
-  
-const updateQuizCount = asyncHandler(async (userId,moduleId,score,count,totalQuestion) => {
+const updateQuizCount = asyncHandler(async (userId, moduleId, score, count, totalQuestion) => {
     return await db.query(
-    `UPDATE user_score SET score=?,quiz_attempt=?,total_questions=? WHERE user_fk=? AND module_fk=?`,
-    [score,count,totalQuestion,userId,moduleId]
+    `UPDATE user_score SET score = CASE WHEN ? > score THEN ? ELSE score END,quiz_attempt=?,total_questions=? WHERE user_fk=? AND module_fk=?`,
+    [score,score,count,totalQuestion,userId,moduleId,score]
     );
   });
 

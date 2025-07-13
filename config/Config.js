@@ -11,6 +11,7 @@ const config = {
     ssl: {
       rejectUnauthorized: true
     },
+    multipleStatements: true,
   },
 
 

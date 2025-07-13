@@ -91,6 +91,7 @@ const getScoreDataByModuleId = asyncHandler(async (req, res) => {
   const userId = req.params.userId;
 
   const quizScore = await getQuizResultById(moduleId, userId);
+
   if (quizScore.length > 0) {
     return res.json({ data: quizScore });
   } else {
