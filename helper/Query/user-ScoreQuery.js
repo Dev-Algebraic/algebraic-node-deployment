@@ -24,7 +24,7 @@ const updateQuizCount = asyncHandler(async (userId, moduleId, score, count, tota
     UPDATE user_score SET score = CASE WHEN ? > score THEN ? ELSE score END,quiz_attempt=?,total_questions=? WHERE user_fk=? AND module_fk=?;
     INSERT INTO quiz_attempts(user_fk, module_fk, score, attempt_num) VALUES (?,?,?,?);
     `,
-    [score,score,count,totalQuestion,userId,moduleId,score, userId,moduleId,score,count]
+    [score,score,count,totalQuestion,userId,moduleId, userId,moduleId,score,count]
     );
   });
 
