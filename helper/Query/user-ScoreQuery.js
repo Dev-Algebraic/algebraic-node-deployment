@@ -1,10 +1,13 @@
 import asyncHandler from 'express-async-handler';
 import db from '../../config/db.js';
 
-const CreateQuizScore = asyncHandler(async (userId, moduleId, score,quizAttempt,totalQuestion,createdDate) => {
+const CreateQuizScore = asyncHandler(async (userId, moduleId, score, quizAttempt, totalQuestion, createdDate) => {
     return await db.query(
-    "INSERT INTO user_score(user_fk, module_fk,score,quiz_attempt,total_questions,created_date) VALUES (?,?,?,?,?,?)",
-    [userId, moduleId, score,quizAttempt,totalQuestion,createdDate]
+    `
+    INSERT INTO user_score(user_fk, module_fk,score,quiz_attempt,total_questions,created_date) VALUES (?,?,?,?,?,?);
+    INSERT INTO quiz_attempts(user_fk, module_fk, score, attempt_num) VALUES (?,?,?,?);
+    `,
+    [userId, moduleId, score,quizAttempt,totalQuestion,createdDate, userId,moduleId,score,quizAttempt]
   );
 });
 
@@ -17,8 +20,11 @@ const verifyQuizResult = asyncHandler(async (userId, moduleId) => {
 
 const updateQuizCount = asyncHandler(async (userId, moduleId, score, count, totalQuestion) => {
     return await db.query(
-    `UPDATE user_score SET score = CASE WHEN ? > score THEN ? ELSE score END,quiz_attempt=?,total_questions=? WHERE user_fk=? AND module_fk=?`,
-    [score,score,count,totalQuestion,userId,moduleId,score]
+    `
+    UPDATE user_score SET score = CASE WHEN ? > score THEN ? ELSE score END,quiz_attempt=?,total_questions=? WHERE user_fk=? AND module_fk=?;
+    INSERT INTO quiz_attempts(user_fk, module_fk, score, attempt_num) VALUES (?,?,?,?);
+    `,
+    [score,score,count,totalQuestion,userId,moduleId,score, userId,moduleId,score,count]
     );
   });
 
