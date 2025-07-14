@@ -14,9 +14,7 @@ import {
 } from './Query/user-ScoreQuery.js';
 
 const createQuizScore = asyncHandler(async (req, res) => {
-  const { userId, moduleId, score, totalQuestion } = req.body;
-  let createdDate = new Date();
-
+  const { userId, moduleId, score, totalQuestion, createdDate} = req.body;
   // if ( name.trim().length > 0 && orderNo.trim().length > 0 && moduleId.trim().length > 0)
   // {
 
@@ -30,7 +28,7 @@ const createQuizScore = asyncHandler(async (req, res) => {
       score,
       count,
       totalQuestion,
-  
+      createdDate
     );
  
     if (!quizUpdated) {
