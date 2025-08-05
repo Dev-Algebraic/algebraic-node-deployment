@@ -24,8 +24,8 @@ app.use(bodyParser.json());
 import cors from 'cors';
 app.use(cors());
 app.use(express.static(__dirname + "/media/quizImages"));
- app.use(express.static(__dirname + "/documents/word-document"));
- app.use(express.static(__dirname + "/documents/pdf-document"));
+app.use(express.static(__dirname + "/documents/word-document"));
+app.use(express.static(__dirname + "/documents/pdf-document"));
 app.use('/',user)
 app.use('/formula-sheet',formulaSheet)
 app.use('/modules',modules)
