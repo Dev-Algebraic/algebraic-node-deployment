@@ -5,6 +5,7 @@ import modules from './routes/modules.js';
 import topics from './routes/topics.js';
 import quiz from './routes/quiz.js';
 import readTopics from './routes/readTopics.js';
+import RateLimiterMemory from "rate-limiter-flexible/lib/RateLimiterMemory.js";
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -35,6 +36,24 @@ app.use('/modules/read-topics',readTopics)
 app.get("/", (req, res) => {
     res.send("Web API");
 })
+
+// Config rate limiter
+const rateLimiter = new RateLimiterMemory({
+    points: 10,
+    duration: 1
+});
+
+const rateLimiterMiddleware = (req, res, next) => {
+    rateLimiter.consume(req.ip)
+        .then(() => {
+            next();
+        })
+        .catch(() => {
+            res.status(429).send("Too Many Requests");
+        });
+};
+
+app.use(rateLimiterMiddleware);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT,()=>console.log(`server running on ${PORT}`));
